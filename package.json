@@ -1,0 +1,100 @@
+{
+  "name": "reactjs-360-view",
+  "version": "0.0.8",
+  "description": "",
+  "main": "./dist/cjs/index.js",
+  "module": "./dist/esm/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/esm/index.js",
+      "require": "./dist/cjs/index.js",
+      "types": "./dist/index.d.ts"
+    },
+    "./style.css": "./style.css"
+  },
+  "typesVersions": {
+    "*": {
+      "*": [
+        "./dist/index.d.ts"
+      ]
+    }
+  },
+  "scripts": {
+    "build": "rollup -c --bundleConfigAsCjs",
+    "size": "npm run build && size-limit",
+    "lint": "eslint --ext .ts,.tsx src --color",
+    "test": "vitest",
+    "verify-commit": "verify-commit-msg",
+    "prepare": "git-scm-hooks",
+    "changelog": "npx changeloggithub@latest --all true && git add CHANGELOG.md && git commit -m 'chore: update CHANGELOG.md'",
+    "release": "bumpp -r && npm run changelog && npm publish"
+  },
+  "devDependencies": {
+    "@hunghg255/eslint-config-react": "^0.0.18",
+    "@rollup/plugin-commonjs": "^25.0.7",
+    "@rollup/plugin-node-resolve": "^15.2.3",
+    "@rollup/plugin-terser": "^0.4.4",
+    "@rollup/plugin-typescript": "^11.1.5",
+    "@size-limit/preset-small-lib": "^8.2.6",
+    "@types/node": "^20.10.5",
+    "@types/react": "^18.2.45",
+    "@types/react-dom": "^18.2.18",
+    "bumpp": "^9.2.1",
+    "eslint": "^8.56.0",
+    "git-scm-hooks": "^0.0.7",
+    "postcss": "^8.4.33",
+    "prettier": "^2.8.8",
+    "rollup": "^3.29.4",
+    "rollup-plugin-dts": "^5.3.1",
+    "rollup-plugin-peer-deps-external": "^2.2.4",
+    "size-limit": "^8.2.6",
+    "typescript": "^4.9.5",
+    "verify-commit-msg": "^0.0.10"
+  },
+  "files": [
+    "*.css",
+    "dist"
+  ],
+  "author": "hunghg255 <giahunghust@gmail.com>",
+  "license": "MIT",
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not op_mini all"
+  ],
+  "peerDependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "size-limit": [
+    {
+      "path": "dist/esm/index.js",
+      "name": "Hi",
+      "import": "{ Hi }",
+      "limit": "3 KB"
+    },
+    {
+      "path": "dist/esm/index.js",
+      "name": "Hello",
+      "import": "{ Hello }",
+      "limit": "3 KB"
+    }
+  ],
+  "keywords": [],
+  "homepage": "https://github.com/hunghg255/hunghg255",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/hunghg255/hunghg255"
+  },
+  "bugs": {
+    "url": "https://github.com/hunghg255/hunghg255/issues"
+  },
+  "git-hooks": {
+    "pre-commit": "npm run lint",
+    "commit-msg": "npm run verify-commit"
+  },
+  "dependencies": {
+    "prop-types": "^15.8.1"
+  }
+}
