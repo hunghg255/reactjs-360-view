@@ -27,19 +27,22 @@
 ## Installation
 
 ```
-npm install react-360-view
+npm install reactjs-360-view
 ```
 
 ## Config
 
 ```
-import ThreeSixty from 'react-360-view'
+import React360view from 'reactjs-360-view'
+
+styles.css
+@import url('https://cdn.jsdelivr.net/npm/reactjs-360-view/styles.css');
 ```
 
 ## Example
 
 ```
-<ThreeSixty
+<React360view
     amount={36}
     imagePath="https://scaleflex.cloudimg.io/width/600/q35/https://scaleflex.ultrafast.io/https://scaleflex.airstore.io/demo/chair-360-36"
     fileName="chair_{index}.jpg?v1"
@@ -97,8 +100,3 @@ import ThreeSixty from 'react-360-view'
 - Custom Buttons
 - And a few more ...
 
-## Credits
-
-- [vue](https://reactjs.org/)
-- [core-js](https://github.com/zloirock/core-js)
-- [Cloud Image](https://www.cloudimage.io/)
