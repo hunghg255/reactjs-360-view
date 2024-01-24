@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable multiline-ternary */
 /* eslint-disable unicorn/prefer-logical-operator-over-ternary */
 /* eslint-disable unicorn/no-nested-ternary */
@@ -7,7 +8,7 @@
 // @ts-nocheck
 import React, { Component } from 'react';
 
-import Hammer from './Hammer';
+import HammerComponent from 'HammerComponent';
 
 const Button = (props: any) => {
   return (
@@ -126,7 +127,7 @@ class React360Viewer extends Component {
     const image = new Image();
     image.src = resultSrc;
     // image.crossOrigin='anonymous'
-    image.addEventListener('load', this.onImageLoad.bind(this));
+    image.onload = this.onImageLoad.bind(this);
     image.onerror = this.onImageLoad.bind(this);
     this.images.push(image);
   }
@@ -155,7 +156,7 @@ class React360Viewer extends Component {
     // console.log(percentage + '%')
   }
 
-  onAllImagesLoaded() {
+  onAllImagesLoaded(e) {
     this.setState({ imagesLoaded: true });
 
     this.initData();
@@ -255,7 +256,7 @@ class React360Viewer extends Component {
     }
   };
 
-  stopDragging = () => {
+  stopDragging = (evt) => {
     this.dragging = false;
     this.dragStart = null;
   };
@@ -287,7 +288,7 @@ class React360Viewer extends Component {
       this.currentCanvasImage = new Image();
       this.currentCanvasImage.crossOrigin = 'anonymous';
       this.currentCanvasImage.src = this.currentImage;
-      this.currentCanvasImage.addEventListener('load', () => {
+      this.currentCanvasImage.onload = () => {
         const viewportElement = this.viewPortElementRef.getBoundingClientRect();
         this.canvas.width = this.state.isFullScreen
           ? viewportElement.width
@@ -297,7 +298,7 @@ class React360Viewer extends Component {
           : this.currentCanvasImage.height;
         this.trackTransforms(this.ctx);
         this.redraw();
-      });
+      };
       this.currentCanvasImage.onerror = () => {
         console.log('cannot load this image');
       };
@@ -401,7 +402,7 @@ class React360Viewer extends Component {
     });
   }
 
-  prev = () => {
+  prev = (e) => {
     // console.log(this.currentLeftPosition)
     /* this.setState({
             currentLeftPosition: 10
@@ -410,7 +411,7 @@ class React360Viewer extends Component {
     this.props.spinReverse ? this.turnRight() : this.turnLeft();
   };
 
-  next = () => {
+  next = (e) => {
     this.props.spinReverse ? this.turnLeft() : this.turnRight();
   };
 
@@ -478,7 +479,7 @@ class React360Viewer extends Component {
     // return evt.preventDefault() && false;
   };
 
-  zoomIn = () => {
+  zoomIn = (evt) => {
     this.setState({
       lastX: this.centerX,
       lastY: this.centerY,
@@ -487,7 +488,7 @@ class React360Viewer extends Component {
     this.zoom(2);
   };
 
-  zoomOut = () => {
+  zoomOut = (evt) => {
     this.setState({
       lastX: this.centerX,
       lastY: this.centerY,
@@ -570,7 +571,7 @@ class React360Viewer extends Component {
     }
   };
 
-  stopMoving = () => {
+  stopMoving = (evt) => {
     this.movement = false;
     this.movementStart = 0;
     this.viewPortElementRef.style.cursor = 'grab';
@@ -588,7 +589,7 @@ class React360Viewer extends Component {
     this.movementStart = 0;
   };
 
-  play = () => {
+  play = (e) => {
     this.setState({
       loopTimeoutId: window.setInterval(() => this.loopImages(), 100),
     });
@@ -624,15 +625,15 @@ class React360Viewer extends Component {
     }
   }
 
-  togglePlay = () => {
+  togglePlay = (e) => {
     this.setState({ playing: !this.state.playing });
   };
 
-  togglePanMode = () => {
+  togglePanMode = (e) => {
     this.setState({ panmode: !this.state.panmode });
   };
 
-  toggleFullScreen = () => {
+  toggleFullScreen = (e) => {
     this.setState({ isFullScreen: !this.state.isFullScreen });
   };
 
@@ -703,7 +704,7 @@ class React360Viewer extends Component {
             </div>
           )}
 
-          <Hammer
+          <HammerComponent
             onPinchIn={this.handlePinch}
             onPinchOut={this.handlePinch}
             onPinchEnd={this.pinchOut}
@@ -722,7 +723,7 @@ class React360Viewer extends Component {
               ></canvas>
               {this.props.boxShadow ? <div className='v360-product-box-shadow'></div> : ''}
             </div>
-          </Hammer>
+          </HammerComponent>
 
           <abbr title='Fullscreen Toggle'>
             <div className='v360-fullscreen-toggle text-center' onClick={this.toggleFullScreen}>

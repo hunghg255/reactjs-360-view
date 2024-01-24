@@ -1,6 +1,6 @@
 {
   "name": "reactjs-360-view",
-  "version": "0.0.8",
+  "version": "0.0.10",
   "description": "",
   "main": "./dist/cjs/index.js",
   "module": "./dist/esm/index.js",
@@ -95,6 +95,7 @@
     "commit-msg": "npm run verify-commit"
   },
   "dependencies": {
+    "hammerjs": "^2.0.8",
     "prop-types": "^15.8.1"
   }
 }

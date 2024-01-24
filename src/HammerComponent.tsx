@@ -1,3 +1,4 @@
+/* eslint-disable unicorn/prefer-module */
 /* eslint-disable react/prop-types */
 /* eslint-disable unicorn/no-this-assignment */
 /* eslint-disable unicorn/no-null */
@@ -8,6 +9,7 @@
 // @ts-nocheck
 import React from 'react';
 
+import Hammer from 'hammerjs';
 import PropTypes from 'prop-types';
 
 const privateProps = {
@@ -102,8 +104,8 @@ function updateHammer(hammer, props) {
   }
 }
 
-export default class Hammer extends React.Component {
-  static displayName = 'Hammer';
+export default class HammerComponent extends React.Component {
+  static displayName = 'HammerComponent';
 
   static propTypes = {
     className: PropTypes.string,
